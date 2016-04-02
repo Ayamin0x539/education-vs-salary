@@ -1,0 +1,101 @@
+Shared Links
+
+Dependencies:
+https://drive.google.com/a/uconn.edu/folderview?id=0B0PrMqyPJ_vkc1h6a2dIdVJiaEE&usp=sharing
+
+Java Wolfram API:
+https://reference.wolfram.com/language/JLink/tutorial/WritingJavaProgramsThatUseTheWolframLanguage.html
+
+Example link for xml output of Wolfram search:
+http://api.wolframalpha.com/v2/query?input=salary+mathematician+physicist++chemist+in+connecticut&appid=3L7PJ5-47TTGPVWT2
+
+Java Google Maps GUI:
+https://dzone.com/articles/google-maps-java-swing
+
+Setting up bitbucket:
+https://bitbucket.org/team1ctskillschallenge/education-vs-salary
+
+JX Browser
+https://jxbrowser.support.teamdev.com/support/solutions/articles/9000012874-google-maps
+
+
+
+
+Team 1:
+Nick Bittar
+John Bojorquez
+Mark Bluemer
+Aaron Huang
+Bekhzod Umarov
+
+Project Outline:
+Idea: Map college costs to salaries by region and profession.
+Goals:
+Determine why people move out of state for work. (Ties in with CT skills challenge goal.)
+Improve education in colleges or suggest more affordable college prices.
+
+Process Documentation:
+Decided to use Wolfram API.
+Fiddled with Java library, but too many dependencies
+Format:
+
+http://api.wolframalpha.com/v2/query?input=<USER_STRING>&appid=<APP_ID> 
+
+Example:
+http://api.wolframalpha.com/v2/query?input=salary+mathematician+physicist++chemist+in+connecticut&appid=3L7PJ5-47TTGPVWT2
+
+User input
+Location
+Profession
+University (optional)
+Output:
+Cost of attendance at university if specified, otherwise of all universities in the state
+Pinpointed on Google Maps using Google Maps API
+https://dzone.com/articles/google-maps-java-swing
+What we do with user input:
+1. Run the query: “average salary in ${CITY} for ${PROFESSION}”
+Plaintext output is in the format
+art directors | 40 people  (100%) | $72030 per year
+computer programmers | 480 people | $72260 per year
+2. Run The query: “college tuition for ${COLLEGE_NAME}”
+See sample output.
+
+
+Example output for salary:
+Related occupations
+------------
+ | people employed | mean wage
+computer programmers | 480 people | $72260 per year
+computer software engineers |  | 
+computer support specialists | 840 people | $52330 per year
+computer systems analysts | 840 people | $77870 per year
+database administrators | 170 people | $81310 per year
+network and computer systems administrators | 610 people | $67780 per year
+network systems and data communications analysts | 730 people | $74350 per year
+miscellaneous computer specialists | 80 people | $68130 per year
+
+Plan:
+Parse until we see “Related occupations”, skip the line with “------------”, then call Java’s String.split method using “ | “ as the token for delimiting. Skip the rest once we see an empty line.
+
+...
+
+Example output for tuition cost:
+Result
+------------
+$7632 per year  (US dollars per year)
+
+Plan:
+Parse until we see “Result”, skip the line with “------------”, then use Java’s nextInt() method on the input stream to pull the dollar mount.
+
+Lottery
+7849713 ipad
+7849734 appletv1
+7849720 appletv2
+7849722 amazon
+
+
+Self-rating
+Teamwork: 93
+Functional: 80
+Technical Correctness: 93
+X-Factor: 88
