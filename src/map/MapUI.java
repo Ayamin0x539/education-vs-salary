@@ -31,7 +31,7 @@ public class MapUI {
 //		File file = new File(classLoader.getResource("maps.html").getFile());
 //		System.out.println(file.getAbsolutePath());
 
-		browser.loadURL("https://www.google.com/maps/place/University+of+New+Haven/@41.292237,-72.961932,15z/data=!4m2!3m1!1s0x0:0x7e30804fafd0082?sa=X&ved=0ahUKEwiGtYiXyPDLAhVDwiYKHVjRAe0Q_BIIeTAK");
+        browser.loadURL("https://www.google.com/maps/search/universities+in+new+haven+50+miles/@41.2876503,-73.0250582,12z/data=!3m1!4b1");
 	}
 	
 	public void execJavaScript(String script) {
