@@ -1,9 +1,16 @@
 package test;
 
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 import querymanager.QueryManager;
 import globalconstants.Constants;
 import userinput.PromptedInput;
 
+import com.teamdev.jxbrowser.chromium.Browser;
+import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 import com.wolfram.alpha.WAEngine;
 import com.wolfram.alpha.WAException;
 import com.wolfram.alpha.WAPlainText;
@@ -47,8 +54,20 @@ public class QueryManagerTest {
 	}
 
 	public static void main(String[] args) {
-		parseCollegeTuitionQueryTest("college tuition for university of new haven");
-		parseSalaryQueryTest("average salary in new haven for computer science");
+		//parseCollegeTuitionQueryTest("college tuition for university of new haven");
+		//parseSalaryQueryTest("average salary in new haven for computer science");
+		
+        Browser browser = new Browser();
+        BrowserView view = new BrowserView(browser);
+
+        JFrame frame = new JFrame("JxBrowser Google Maps");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.add(view, BorderLayout.CENTER);
+        frame.setSize(700, 500);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+
+        browser.loadURL("https://www.google.com/maps/search/universities+in+new+haven+50+miles/@41.2876503,-73.0250582,12z/data=!3m1!4b1");
 	}
 
 }
