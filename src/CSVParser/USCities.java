@@ -26,7 +26,7 @@ public class USCities {
 
 			    // use comma as separator
 				String[] cityInfo = line.split(cvsSplitBy);
-				geopoint.put(cityInfo[0], cityInfo[1] + "," + cityInfo[2]);
+				geopoint.put(cityInfo[0].toLowerCase(), cityInfo[1] + "," + cityInfo[2]);
 				i++;
 			}
 
@@ -47,11 +47,11 @@ public class USCities {
 	}
 	
 	public static String getLocation(String city) {
-		return geopoint.get(city);
+		return geopoint.get(city.toLowerCase());
 	}
 	
-	/*public static void main (String[] argv) {
+	public static void main (String[] argv) {
 		USCities gp = new USCities();
 		System.out.println(gp.getLocation("New Haven"));
-	}*/
+	}
 }
