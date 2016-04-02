@@ -90,16 +90,18 @@ public class QueryUI implements ActionListener {
 			final String salaryString = "average salary in " + locationField.getQuery() 
 			+ " for " + professionField.getQuery();
 			
-			String tuitionString = "average tuition in " + locationField.getQuery() 
-			+ " for " + professionField.getQuery();
+			final String tuitionString = "college tuition for " + universityField.getQuery();
 			
 			// Make the queries
 			final WAQuery salaryQuery = engine.createQuery();
+			final WAQuery tuitionQuery = engine.createQuery();
+			
 			System.out.println("Query: " + salaryString);
 			new Thread()
 			{
 			    public void run() {
-			    	QueryManager.parseCollegeTuitionQuery(QueryMaker.make(engine, salaryQuery, salaryString));
+			    	int tuition = QueryManager.parseCollegeTuitionQuery(QueryMaker.make(engine, tuitionQuery, tuitionString));
+			    	System.out.println("The tuition is $" + tuition + " per year.");
 					//QueryManager.parseCollegeTuitionQuery(QueryMaker.make(engine, query, tuitionString));
 			    }
 			}.start();
