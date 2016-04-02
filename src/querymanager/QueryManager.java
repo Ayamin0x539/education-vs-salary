@@ -85,5 +85,39 @@ public class QueryManager {
 		}
 		return salary;
 	}
+	
+	/**
+	 * Parses a query result for the colleges in a region
+	 * @param queryResult The result of a query of the form "colleges in ${REGION}".
+	 * @return The array of colleges in that region
+	 */
+	public static String[] parseCollegesInRegion(WAQueryResult queryResult) {
+		String[] colleges = null;
+		if (queryResult.isError()) {
+			System.out.println("Query error");
+			System.out.println("  error code: " + queryResult.getErrorCode());
+			System.out.println("  error message: " + queryResult.getErrorMessage());
+		} else if (!queryResult.isSuccess()) {
+			System.out.println("Query was not understood; no results available.");
+		} else {
+			for (WAPod pod : queryResult.getPods()) {
+				if (!pod.isError()) {
+					if(pod.getTitle().equals("Result")) {
+							for (WASubpod subpod : pod.getSubpods()) {
+								for (Object element : subpod.getContents()) {
+									if (element instanceof WAPlainText) {
+										String plaintext_colleges = ((WAPlainText) element).getText();
+										colleges = plaintext_colleges.split("\\r?\\n");
+										colleges[colleges.length - 1] = null;
+									}
+								}
+							}
+							break;
+					}
+				}
+			}
+		}
+		return colleges;
+	}
 
 }
