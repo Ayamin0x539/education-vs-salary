@@ -1,6 +1,7 @@
 package map;
 
 import java.awt.BorderLayout;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -14,12 +15,17 @@ public class MapUI {
 	JFrame browserFrame;
 	
 	public MapUI(String title, int width, int height) {
+		browser = new Browser();
 		browserFrame = new JFrame(title);
         browserFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         browserFrame.add(view, BorderLayout.CENTER);
         browserFrame.setSize(width, height);
         browserFrame.setLocationRelativeTo(null);
         browserFrame.setVisible(true);
-        browser.loadURL("http://maps.google.com");
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        File file = new File(classLoader.getResource("maps.html").getFile());
+        System.out.println(file.getAbsolutePath());
+ 
+        browser.loadURL(file.getAbsolutePath());
 	}
 }
