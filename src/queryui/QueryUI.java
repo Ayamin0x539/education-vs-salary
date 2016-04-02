@@ -102,7 +102,8 @@ public class QueryUI implements ActionListener {
 			    public void run() {
 			    	int tuition = QueryManager.parseCollegeTuitionQuery(QueryMaker.make(engine, tuitionQuery, tuitionString));
 			    	System.out.println("The tuition is $" + tuition + " per year.");
-					//QueryManager.parseCollegeTuitionQuery(QueryMaker.make(engine, query, tuitionString));
+					int salary = QueryManager.parseSalaryQuery(QueryMaker.make(engine, salaryQuery, salaryString));
+					System.out.println("The average salary is $" + salary + " per year.");
 			    }
 			}.start();
 		}
