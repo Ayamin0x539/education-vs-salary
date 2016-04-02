@@ -3,6 +3,9 @@ package map;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import com.teamdev.jxbrowser.chromium.Browser;
@@ -11,6 +14,7 @@ import com.teamdev.jxbrowser.chromium.swing.BrowserView;
 public class MapUI {
 	Browser browser;
 	BrowserView view;
+	JPanel panel;
 	JFrame frame;
 
 	public MapUI(String title, int width, int height) {
@@ -32,5 +36,15 @@ public class MapUI {
 	
 	public void execJavaScript(String script) {
 		browser.executeJavaScript(script);
+	}
+	
+	public void addTuitionSalaryInfo(String tuition, String salary) {
+		JLabel label = new JLabel("<html><b>Tution</b>: " + tuition + "<br />" + "<b>Average Salary</b>: " + salary);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.add(label);
+		frame.setJMenuBar(menuBar);
+		frame.setVisible(false);
+		frame.setVisible(true);
+		frame.revalidate();
 	}
 }
