@@ -53,7 +53,6 @@ public class QueryManager {
 	 */
 	public static int parseSalaryQuery(WAQueryResult queryResult) {
 		int salary = 0;
-		String salary_info = "";
 		if (queryResult.isError()) {
 			System.out.println("Query error");
 			System.out.println("  error code: " + queryResult.getErrorCode());
@@ -63,7 +62,6 @@ public class QueryManager {
 		} else {
 			for (WAPod pod : queryResult.getPods()) {
 				if (!pod.isError()) {
-					// System.out.println(pod.getTitle());
 					if(pod.getTitle().equals("Related occupations")) {
 							for (WASubpod subpod : pod.getSubpods()) {
 								for (Object element : subpod.getContents()) {
@@ -76,10 +74,6 @@ public class QueryManager {
 										String lines[] = plaintext_salary_info.split("\\$");
 										String salary_inf = lines[1].substring(0, 10);
 										salary  = Integer.parseInt(salary_inf.replaceAll("[\\D]", ""));
-										
-										// Replaces all non-digits with the empty string.
-										///tuition = Integer.parseInt(plaintext_tuition.replaceAll("[\\D]", ""));
-										//salary_info = plaintext_salary_info;
 										
 									}
 								}
