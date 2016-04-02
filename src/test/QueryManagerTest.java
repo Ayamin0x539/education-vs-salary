@@ -30,9 +30,25 @@ public class QueryManagerTest {
         }
 	}
 
+	public static void parseSalaryQueryTest(String queryString) {
+		WAEngine engine = new WAEngine();
+        engine.setAppID(Constants.APP_ID);
+        engine.addFormat("plaintext");
+        WAQuery query = engine.createQuery();
+        query.setInput(queryString);
+        
+        try {
+            WAQueryResult queryResult = engine.performQuery(query);
+            int salary = QueryManager.parseSalaryQuery(queryResult);
+            System.out.println("The salary is $" + salary + " per year.");
+        } catch (WAException e) {
+            e.printStackTrace();
+        }
+	}
 
 	public static void main(String[] args) {
 		parseCollegeTuitionQueryTest("college tuition for university of new haven");
+		parseSalaryQueryTest("average salary in new haven for computer science");
 	}
 
 }
