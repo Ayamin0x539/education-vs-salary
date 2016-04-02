@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import com.wolfram.alpha.WAEngine;
 import com.wolfram.alpha.WAQuery;
 
+import map.MapUI;
 import querymanager.QueryMaker;
 import querymanager.QueryManager;
 
@@ -104,6 +105,8 @@ public class QueryUI implements ActionListener {
 			    	System.out.println("The tuition is $" + tuition + " per year.");
 					int salary = QueryManager.parseSalaryQuery(QueryMaker.make(engine, salaryQuery, salaryString));
 					System.out.println("The average salary is $" + salary + " per year.");
+					MapUI mapUI = new MapUI("Education vs Salary", 800, 600);
+					mapUI.addTuitionSalaryInfo("" + tuition, "" + salary);
 			    }
 			}.start();
 		}
